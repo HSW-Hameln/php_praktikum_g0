@@ -1,3 +1,9 @@
+<html>
+<head>
+    <title>G0</title>
+</head>
+<body>
+<pre>
 <?php
 /**
  * Created by PhpStorm.
@@ -26,3 +32,8 @@ while ($statement->fetch()) {
 $statement->free_result();
 /* close statement */
 $statement->close();
+
+?>
+</pre>
+</body>
+</html>
