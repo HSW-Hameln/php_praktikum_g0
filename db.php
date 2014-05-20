@@ -5,7 +5,7 @@
  * Date: 20.05.14
  * Time: 10:44
  *
- * Diese Datei wird auf dem Server Automatisch überschrieben.
+ * Diese Datei wird auf dem Server Automatisch mit den Weten der generierten Datenbank überschrieben.
  */
 
 $DB_HOST = 'localhost';
