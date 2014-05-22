@@ -8,3 +8,4 @@
          data VARCHAR(100)
        );
 INSERT INTO example_autoincrement (data) VALUES ("HALLO WELT!");
+INSERT INTO example_autoincrement (data) VALUES ("-----------");
