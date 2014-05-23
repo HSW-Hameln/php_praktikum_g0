@@ -3,37 +3,76 @@
     <title>G0</title>
 </head>
 <body>
-<pre>
-<?php
-/**
- * Created by PhpStorm.
- * User: mielke
- * Date: 20.05.14
- * Time: 14:57
- */
-require_once 'db.php';
 
-$db = new mysqli($DB_HOST,$DB_USER,$DB_PASS,$DB_NAME);
+<!DOCTYPE html>
+<html>
+<!--
+  Created using jsbin.com
+  Source can be edited via http://jsbin.com/pojera/8/edit
+-->
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
 
-if (mysqli_connect_errno()) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
-}
-$statement = $db->prepare("SELECT * FROM example_autoincrement");
+    <style id="jsbin-css">
 
-$result = $statement->execute();
-/* bind result variables */
-$statement->bind_result($id, $data);
+    </style>
+</head>
+<body>
+<form onsubmit="return false;">
+    Wetebereich (0 - 100)<br>
+    Geschätzte Note:<input id="note" /><br>
+    Anteil Student 1:<input id="m1" /><br>
+    Anteil Student 2:<input id="m2"/><br>
+    Anteil Student 3:<input id="m3"/><br>
+    <input type="submit" onclick="calc();"/>
+</form>
+<script>
+    var calc = function(){
+//var codePunkte = 50;
+//var docuPunkte = 50;
 
-/* fetch values */
-while ($statement->fetch()) {
-    printf ("%s (%s)\n", $id, $data);
-}
-$statement->free_result();
-/* close statement */
-$statement->close();
+//var notePunkte = (codePunkte + docuPunkte)/2;
+        var notePunkte = parseFloat(document.getElementById('note').value)
 
-?>
-</pre>
+        var faktor = [];
+        faktor.push(parseFloat(document.getElementById('m1').value));
+        faktor.push(parseFloat(document.getElementById('m2').value));
+        faktor.push(parseFloat(document.getElementById('m3').value));
+
+        valid = false;
+
+// noprotect
+        for(var i = 0, j = 0 ; i<faktor.length ; i++)
+        {
+            if(faktor[i])
+            {
+                if(faktor[i] < 0)
+                {
+                    valid = false;
+                    break;
+                }
+                j += faktor[i];
+                valid = (j == (i+1)*100);
+            }
+        }
+
+        if(valid && notePunkte && notePunkte > 0 && notePunkte <= 100)
+        {
+            // noprotect
+            for(var i = 0 ; i<faktor.length ; i++)
+            {
+                if(faktor[i])
+                    alert('Student'+i+': '+((notePunkte*0.8)+(notePunkte*0.2*(faktor[i]/100)))+'Punkte');
+            }
+        }
+        else{
+            alert("Punkte sind fehlerhaft.")
+        }
+        return false;
+    };
+</script>
+</body>
+</html>
 </body>
 </html>
